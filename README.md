@@ -1,11 +1,15 @@
 # WindowWatch
 
-WindowWatch is a portable x64 Windows desktop app for capturing intermittent visual glitches. It uses Windows Graphics Capture to watch the window you select. It keeps recent full-resolution images in memory and writes local files when a trigger fires. Tested on Windows 11 x64.
+WindowWatch watches a Windows app and saves the frames before and after a change on screen. Use it to see which panel appeared first during a transition, read a message that flashed by, or pinpoint where a scrolling view paused. Each capture includes full-resolution images and timestamps you can step through in your browser.
+
+## Download
+
+[Download WindowWatch.exe for Windows x64](https://github.com/sudo-jake/WindowWatch/releases/latest/download/WindowWatch.exe) and run it directly. The portable build has been tested on Windows 11 x64.
 
 ## Capture an event
 
 1. Open WindowWatch.exe, choose your app's window, and click **Start watching**. Click **Refresh list** if you opened the window after launching WindowWatch.
-2. Reproduce the issue with the window restored. The capture follows the selected window when it moves or another window covers it. Minimizing the target pauses monitoring. Resizing it resets the history.
+2. Use the app as usual or repeat the action you want to inspect. WindowWatch captures pauses during motion, brief flashes, and redraws according to the triggers you enable. Capture follows the selected window when it moves or another window covers it. Minimizing the target pauses monitoring. Resizing it resets the history.
 3. Click **Stop watching** to save the frames still in the rolling buffer. If an automatic event is in progress, stopping finishes that capture. Otherwise the folder name includes **Stopped-watching**. The log shows the number of frames saved or reports when Windows delivered none.
 4. Click **View session** for a list of this run's captures, or **View last capture** to step through its frames with the arrow keys or slider. **Open folder** opens the current session in Explorer. The default capture root is **Documents\WindowWatch Captures**.
 
