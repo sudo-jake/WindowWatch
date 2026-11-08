@@ -56,3 +56,7 @@ Run the included build script in 64-bit PowerShell on Windows 11 x64. It uses th
 The script creates **WindowWatch.exe** beside the source. The executable has no package or installer dependencies beyond the Windows components it uses.
 
 Run **tests\run.ps1** in an interactive Windows desktop session to exercise the detector and the window-selection/capture/export path. A small generated test window animates, pauses, flashes and changes color. Results and example captures are saved in a new temporary directory.
+
+## License
+
+WindowWatch is available under the [MIT License](LICENSE).
