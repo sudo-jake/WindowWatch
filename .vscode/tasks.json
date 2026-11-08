@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build WindowWatch",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": ["-NoProfile", "-ExecutionPolicy", "RemoteSigned", "-File", "${workspaceFolder}/build.ps1"],
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Run WindowWatch",
+            "type": "process",
+            "command": "${workspaceFolder}/WindowWatch.exe",
+            "dependsOn": "Build WindowWatch",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test WindowWatch",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": ["-NoProfile", "-ExecutionPolicy", "RemoteSigned", "-File", "${workspaceFolder}/tests/run.ps1"],
+            "group": { "kind": "test", "isDefault": true },
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

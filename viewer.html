@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WindowWatch capture</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#14171b;color:#edf0f2;font:16px Inter,"Segoe UI",sans-serif}
+main{max-width:1180px;margin:auto;padding:20px}header{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap}
+h1{font-size:22px;margin:0}time,output{color:#b6c3d0;font-variant-numeric:tabular-nums}
+ul{padding-left:20px;font-size:14px;color:#cdd4df}figure{margin:12px 0;background:#090b0d;text-align:center}
+img{display:block;margin:auto;max-width:100%;max-height:66vh;object-fit:contain}
+nav{display:flex;align-items:center;gap:14px;flex-wrap:wrap}input{min-width:140px;flex:1;accent-color:#90c7ff}
+button{border:1px solid #4d5967;background:#242c35;color:white;border-radius:5px;padding:8px 13px}button:disabled{opacity:.4}
+output{display:block;margin:10px 0}p:empty{display:none}
+</style><main><header><h1>@@WINDOW@@</h1><time>@@DATE@@</time><a href="../index.html" style="color:#9bd3ff">All captures in session</a></header>
+<ul>@@EVENTS@@</ul><p>@@NOTE@@</p><figure><img id="frame" alt="Captured window"></figure>
+<nav><button id="prev" title="Left arrow">Previous frame</button><input id="seek" type="range" min="0" step="1" aria-label="Frame"><button id="next" title="Right arrow">Next frame</button></nav>
+<output id="position"></output></main>
+<script>
+const times=[@@TIMES@@],seek=document.getElementById('seek');
+const prev=document.getElementById('prev'),next=document.getElementById('next');
+function show(n){
+  n=Math.max(0,Math.min(times.length-1,n));seek.value=n;
+  document.getElementById('frame').src=String(n+1).padStart(4,'0')+'.png';
+  const offset=times[n];document.getElementById('position').textContent='Frame '+(n+1)+' of '+times.length+'   ·   '+(offset>0?'+':'')+offset+' ms @@ORIGIN@@';
+  prev.disabled=n===0;next.disabled=n===times.length-1;
+}
+seek.max=times.length-1;seek.oninput=()=>show(Number(seek.value));prev.onclick=()=>show(Number(seek.value)-1);next.onclick=()=>show(Number(seek.value)+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();show(Number(seek.value)+(e.key==='ArrowLeft'?-1:1))}});
+show(@@INDEX@@);
+</script></html>
